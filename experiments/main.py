@@ -59,7 +59,7 @@ def train(args):
     save_file_name = args.save_file_name.strip()
     early_stop = args.early_stop.strip()
 
-    save_dir_root = os.path.join(os.getcwd(), 'experiments', save_dir_name)
+    save_dir_root = os.path.join(os.getcwd(), 'results', save_dir_name)
 
     time_epochs = []
     for epoch in tqdm(range(start_epoch, args.n_epochs), desc='epoch', position=0):

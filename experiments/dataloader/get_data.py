@@ -15,9 +15,6 @@ def get_data(args):
     if args.dataset == 'plantnet':
         return get_plantnet(root=os.path.join(root, 'plantnet'), batch_size=args.batch_size, num_workers=args.num_workers)
     elif args.dataset == 'cifar100':
-        # if not os.path.exists(os.path.join(root, 'cifar100')):
-        #     os.mkdir(os.path.join(root, 'cifar100'))
-
         return get_cifar_100(root=os.path.join(root, 'cifar100'), batch_size=args.batch_size,
                              num_workers=args.num_workers, noise_cifar=args.noise_cifar)
     else:
@@ -52,7 +49,6 @@ def get_cifar_100(root, batch_size, num_workers, noise_cifar, augment=True):
     dataset_test = datasets.CIFAR100(root=root, train=False,
                                      transform=transform_test, download=True)
 
-
     if noise_cifar:
         dataset_train = LabelNoise(dataset_train, k=5, n_labels=100, p=noise_cifar)
         print(f'Running CIFAR100 with label noise set at {noise_cifar}')
@@ -61,7 +57,6 @@ def get_cifar_100(root, batch_size, num_workers, noise_cifar, augment=True):
 
     test_class_to_num_instances = Counter(dataset_test.targets)
     val_class_to_num_instances = Counter(dataset_val[i][1] for i in range(len(dataset_val)))
-
 
     train_loader = data.DataLoader(dataset_train, batch_size=batch_size, num_workers=num_workers, shuffle=True)
     val_loader = data.DataLoader(dataset_val, batch_size=batch_size, num_workers=num_workers, shuffle=False)

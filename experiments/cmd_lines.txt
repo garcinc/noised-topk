@@ -1,0 +1,14 @@
+Command lines for CIFAR100 for a level noise of 0.2:
+
+python main.py --k=5 --n_epochs=300 --loss=ce --noise_cifar=0.2 --early_stop=topk --lr=0.1 --seed=8 --batch_size=64 --model=densenet --lr_decay 151 226 --num_workers=4 --dataset=cifar100 --save_dir_name=cifar100_xp --save_file_name=ce --mu=0.0001
+python main.py --k=5 --n_epochs=300 --loss=bal_topk --noise_cifar=0.2 --n_sample=10 --epsilon=0.2 --early_stop=topk --lr=0.1 --seed=8 --batch_size=64 --model=densenet --lr_decay 151 226 --num_workers=4 --dataset=cifar100 --save_dir_name=cifar100_xp --save_file_name=balanced_noise_loss --mu=0.0001
+python main.py --k=5 --n_epochs=300 --loss=smooth_topk --tau=1.0 --noise_cifar=0.2 --early_stop=topk --lr=0.1 --seed=8 --batch_size=64 --model=densenet --lr_decay 151 226 --num_workers=4 --dataset=cifar100 --save_dir_name=cifar100_xp --save_file_name=smooth_topk --mu=0.0001
+
+Command lines for Pl@ntNet-300K when K=5:
+
+python main.py --k=5 --n_epochs=30 --loss=smooth_topk --tau=0.1 --early_stop=mean_topk --lr=0.002 --seed=8 --batch_size=32 --model=resnet50 --lr_decay 20 25 --num_workers=4 --dataset=plantnet --save_dir_name=plantnet_xp --save_file_name=smooth_loss --mu=0.0001 --pretrained
+python main.py --k=5 --n_epochs=30 --loss=ce --early_stop=mean_topk --lr=0.002 --seed=8 --batch_size=32 --model=resnet50 --lr_decay 20 25 --num_workers=4 --dataset=plantnet --save_dir_name=plantnet_xp --save_file_name=ce --mu=0.0001 --pretrained
+python main.py --k=5 --n_epochs=30 --loss=focal --gamma_foc=2.0 --early_stop=mean_topk --lr=0.002 --seed=8 --batch_size=32 --model=resnet50 --lr_decay 20 25 --num_workers=4 --dataset=plantnet --save_dir_name=plantnet_xp --save_file_name=focal --mu=0.0001 --pretrained
+python main.py --k=5 --n_epochs=30 --loss=ldam --max_m=0.2 --normalize_ll --scale=40 --early_stop=mean_topk --lr=0.002 --seed=8 --batch_size=32 --model=resnet50 --lr_decay 20 25 --num_workers=4 --dataset=plantnet --save_dir_name=plantnet_xp --save_file_name=ldam --mu=0.0001 --pretrained
+python main.py --k=5 --n_epochs=30 --loss=bal_topk --epsilon=1.0 --n_sample=5 --early_stop=mean_topk --lr=0.002 --seed=8 --batch_size=32 --model=resnet50 --lr_decay 20 25 --num_workers=4 --dataset=plantnet --save_dir_name=plantnet_xp --save_file_name=balanced_noise --mu=0.0001 --pretrained
+python main.py --k=5 --n_epochs=30 --loss=imbal_topk --max_m=0.2 --epsilon=0.01 --normalize_ll --scale=60 --n_sample=5 --early_stop=mean_topk --lr=0.002 --seed=8 --batch_size=32 --model=resnet50 --lr_decay 20 25 --num_workers=4 --dataset=plantnet --save_dir_name=plantnet_xp --save_file_name=imbalanced_noise --mu=0.0001 --pretrained

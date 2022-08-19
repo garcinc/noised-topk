@@ -1,0 +1,7 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+numpy==1.18.1
+git+https://github.com/oval-group/smooth-topk.git#egg=topk
+torch==1.9.1+cu102
+torchvision==0.10.1+cu102
+tqdm==4.45.0
+

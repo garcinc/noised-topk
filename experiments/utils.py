@@ -10,7 +10,8 @@ from models.densenet import DenseNet3
 import torch.nn as nn
 from topk.svm import SmoothTopkSVM
 from torch.nn import CrossEntropyLoss
-from losses.noised_losses import BalancedNoiseTopKLoss, ImbalancedNoiseTopKLoss
+
+from pytopk import BalNoisedTopK, ImbalNoisedTopK
 
 from losses.focal import FocalLoss
 
@@ -145,11 +146,11 @@ def get_loss(args, n_classes, **kwargs):
         criteria = FocalLoss(gamma=args.gamma_foc)
     elif args.loss == 'ldam':
         criteria = LDAMLoss(cls_num_list=kwargs['cls_num_list'], max_m=args.max_m, scale=args.scale)
-    elif args.loss == 'balanced_noise_topk':
-        criteria = BalancedNoiseTopKLoss(k=args.k, n_sample=args.n_sample, epsilon=args.epsilon)
-    elif args.loss == 'imbalanced_noise_topk':
-        criteria = ImbalancedNoiseTopKLoss(k=args.k, cls_num_list=kwargs['cls_num_list'], exp=args.exp, n_sample=args.n_sample,
-                                           epsilon=args.epsilon, max_m=args.max_m, scale=args.scale)
+    elif args.loss == 'bal_topk':
+        criteria = BalNoisedTopK(k=args.k, epsilon=args.epsilon, n_sample=args.n_sample)
+    elif args.loss == 'imbal_topk':
+        criteria = ImbalNoisedTopK(k=args.k, epsilon=args.epsilon, max_m=args.max_m,
+                                   cls_num_list=kwargs['cls_num_list'], scale=args.scale, n_sample=args.n_sample)
     else:
         raise NotImplementedError
 

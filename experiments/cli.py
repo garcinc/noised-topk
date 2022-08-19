@@ -13,7 +13,7 @@ def add_all_parsers(parser):
 
 def _add_loss_parser(parser):
     group_loss = parser.add_argument_group('Loss parameters')
-    group_loss.add_argument('--loss', choices=['smooth_topk', 'ce', 'ldam', 'balanced_noise_topk', 'imbalanced_noise_topk', 'focal'])
+    group_loss.add_argument('--loss', choices=['smooth_topk', 'ce', 'ldam', 'bal_topk', 'imbal_topk', 'focal'])
     group_loss.add_argument('--k', type=int, help='value of k for computing the topk loss and calculating topk accuracy')
 
     group_loss.add_argument('--n_sample', default=5, type=int, help='number of sampled noise vectors for the noised balanced and imbalanced losses')
@@ -22,7 +22,6 @@ def _add_loss_parser(parser):
     group_loss.add_argument('--tau', default=1.0, help='smoothing parameter if you choose the smooth loss', type=float)
     group_loss.add_argument('--mu', type=float, default=0., help='weight decay parameter')
     group_loss.add_argument('--max_m', default=1.0, help='max margin for um topk loss', type=float)
-    group_loss.add_argument('--exp', default=0.25, help='exponent for um topk loss', type=float)
     group_loss.add_argument('--scale', default=1.0, help='scale for um topk loss and ldam', type=float)
 
 
@@ -43,7 +42,7 @@ def _add_training_parser(parser):
 def _add_dataset_parser(parser):
     group_dataset = parser.add_argument_group('Dataset parameters')
     group_dataset.add_argument('--dataset',
-                               choices=['cifar100', 'big_plantnet'],
+                               choices=['cifar100', 'plantnet'],
                                help='choose the dataset you want to train on')
     group_dataset.add_argument('--noise_cifar', type=float, default=0.0, help='introduce noise in labels (experiment cifar100)')
 
