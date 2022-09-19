@@ -1,10 +1,9 @@
 import torch
-
 import torch.nn as nn
-
 import numpy as np
-from .noised_topk import _noised_topk
+
 from .functional import bal_noised_topk_loss, imbal_noised_topk_loss
+from .noised_topk import _noised_topk
 
 
 class _ABCNoisedTopK(nn.Module):

@@ -1,6 +1,6 @@
 import torch
-from torch.autograd import Function
 import torch.nn as nn
+from torch.autograd import Function
 
 
 class _NoisedTopK(Function):
