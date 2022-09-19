@@ -24,7 +24,7 @@ The pytopk package contains the code for the balanced and imbalanced top-k losse
 It can be installed as follows:
 
 ```console
-python setup.py install
+pip install pytopk
 ```
 
 ### Top-k losses
@@ -81,7 +81,7 @@ pip install -r requirements.txt
 ``` 
 
 
-For running the experiment on Pl@ntNet-300K, you first need to download the dataset [here](https://zenodo.org/record/5645731#.YfMvN-rMJPY)
+For running the experiments on Pl@ntNet-300K, you first need to download the dataset [here](https://zenodo.org/record/5645731#.YfMvN-rMJPY)
 and then place it as *plantnet* inside a folder named *data*.
 
 Command lines that were run for obtaining the results can be found in the *cmd_lines.txt* file.
