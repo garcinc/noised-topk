@@ -79,6 +79,7 @@ def imbal_noised_topk_loss(s, y, k, m_list, epsilon, softtopk, Z, scale):
       "Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification", ICML 2022,
       https://proceedings.mlr.press/v162/garcin22a/garcin22a.pdf
     """
+    m_list = m_list.to(s.device)
     margins_batch = torch.gather(m_list, dim=0, index=y)
     correct_scores = torch.squeeze(torch.gather(s, 1, y[:, None]))
     skp1 = softtopk(s, Z, k + 1, epsilon, -1, -1)
